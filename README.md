@@ -49,7 +49,7 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
   - Click to display a formatted rich notification via `notify-send`.
 - **⚡ Instant NumLock LED Indicator (`scripts/numlock.py`):**
   - Fast sysfs brightness polling for real-time NumLock LED state without latency.
-  - Discrete Opal Silver (`#e2e8f0`) active and Dark Slate (`#414868`) inactive indicators.
+  - Green (`#8cd867`) active and Red (`#f7768e`) inactive indicators with subtle green background glow when ON.
 - **🎛 Integrated Controls & Quick Menus:**
   - Left-click on network opens `nmtui` in Kitty.
   - Left-click on bluetooth opens `bluetoothctl` in Kitty.
@@ -92,17 +92,15 @@ The bar uses a custom **Deep Night Blue** theme with refined Tokyo-Night inspire
 | 🌙 | **Night Blue** | `#89b4fa` | Weather night state (`#custom-weather.night`) |
 | 🟧 | **Warm Terracotta** | `#ea9978` | CPU normal state (`#cpu`) |
 | 🌸 | **Dusty Rose** | `#e89bbd` | Memory (RAM) normal state (`#memory`) |
-| 🟩 | **Leaf Green** | `#8cd867` | Battery normal state (`#battery`) |
+| 🟩 | **Leaf Green** | `#8cd867` | Battery normal state (`#battery`), NumLock active (`#custom-numlock.on`) |
 | 🟢 | **Mint Green** | `#6ee7b7` | Battery charging & plugged state (`#battery.charging`, `#battery.plugged`) |
 | 🟨 | **Warm Sunbeam / Gold** | `#ffd166` | Backlight (`#backlight`), Battery warning (`#battery.warning`) |
 | 🟠 | **Apricot Coral** | `#ff8c5a` | CPU warning (`#cpu.warning`), Memory warning (`#memory.warning`) |
-| 🟥 | **Tokyo Red / Crimson** | `#f7768e` | Critical alerts (`#cpu.critical`, `#memory.critical`, `#battery.critical`), Weather error, Urgent workspaces |
+| 🟥 | **Tokyo Red / Crimson** | `#f7768e` | Critical alerts (`#cpu.critical`, `#memory.critical`, `#battery.critical`), Weather error, Urgent workspaces, NumLock inactive (`#custom-numlock.off`) |
 | 🌐 | **Ice Sky Blue** | `#60cdff` | Network signal indicator (`#network`) |
 | 🟣 | **Lavender-Indigo** | `#a78bfa` | PulseAudio volume level (`#pulseaudio`) |
 | 🔵 | **Periwinkle / Sapphire** | `#7287fd` | Bluetooth active / connected (`#bluetooth`) |
-| ⚪ | **Opal Silver** | `#e2e8f0` | NumLock active state (`#custom-numlock.on`) |
 | 🔘 | **Muted Slate** | `#565f89` | Inactive workspaces, Muted audio, Offline network, Bluetooth off |
-| 🌑 | **Dark Slate** | `#414868` | NumLock inactive state (`#custom-numlock.off`) |
 | ⬛ | **Deep Indigo** | `#3b4261` | Bluetooth disabled state (`#bluetooth.disabled`) |
 
 ---

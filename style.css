@@ -219,16 +219,17 @@ tooltip label {
     color: #3b4261;
 }
 
-/* 9. NumLock: Opal Silver (Active) / Slate (Inactive) */
+/* 9. NumLock: Green (Active) / Red (Inactive) */
 #custom-numlock {
     padding: 0 6px;
     font-size: 15px;
 }
 
 #custom-numlock.on {
-    color: #e2e8f0;
+    color: #8cd867;
+    background-color: rgba(140, 216, 103, 0.18);
 }
 
 #custom-numlock.off {
-    color: #414868;
+    color: #f7768e;
 }
