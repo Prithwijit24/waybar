@@ -57,41 +57,42 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
 
 ## 🧩 Modules & Interaction Reference
 
-| Zone | Module | Icon / Preview | Click Action | Scroll Action | Hover Tooltip |
+| Zone | Module | Icon & Label | Click Action | Scroll Action | Hover Tooltip |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Left** | `custom/logo` | `󰣇` | Launch GTK3 App Drawer | — | `"App drawer"` |
-| | `hyprland/workspaces` | `1` `2` `3` | Switch workspace | — | — |
-| | `hyprland/window` | `title` | — | — | Full window title |
-| **Center** | `clock` | `Sat 23 Aug 08:15 PM` | — | Shift month up/down | Calendar view with today highlighted |
-| **Right** | `custom/weather` | `󰖃 29°C Kolkata` | Rich weather notification | — | Detailed weather report |
-| | `cpu` | `󰲋 {usage}%` | — | — | CPU load average & Max frequency |
-| | `memory` | `󰻟 {percent}%` | — | — | Memory used / total in GiB |
-| | `battery` | `{capacity}% 󰁹` | — | — | Time remaining (alternate mode) |
-| | `network` | `󰖩 {signal}%` | Launch `kitty nmtui` | — | SSID, IP/CIDR, Up/Down bandwidth |
-| | `backlight` | `󰃠 {percent}%` | — | Brightness up/down | — |
-| | `pulseaudio` | `󰕾 {volume}%` | Toggle mute | Volume ±5% | — |
-| | `bluetooth` | `󰂱` / `󰂲` | Launch `kitty bluetoothctl` | — | Connected device details & battery |
-| | `custom/numlock` | `●` | — | — | NumLock status (ON / OFF) |
+| **Left** | `custom/logo` | `󰣇` **App Drawer** | Launch GTK3 App Drawer | — | `"App drawer"` |
+| | `hyprland/workspaces` | `1` `2` `3` **Workspaces** | Switch workspace | — | — |
+| | `hyprland/window` | `firefox` **Window Title** | — | — | Full window title |
+| **Center** | `clock` | `󰃭` `Sat 23 Aug 08:15 PM` | — | Shift month up/down | Calendar view with today highlighted |
+| **Right** | `custom/weather` | `󰖃` **29°C Kolkata** | Rich weather notification | — | Detailed weather report |
+| | `cpu` | `󰲋` `{usage}%` | — | — | CPU load average & Max frequency |
+| | `memory` | `󰻟` `{percent}%` | — | — | Memory used / total in GiB |
+| | `battery` | `󰁹` `{capacity}%` | — | — | Time remaining (alternate mode) |
+| | `network` | `󰖩` `{signal}%` | Launch `kitty nmtui` | — | SSID, IP/CIDR, Up/Down bandwidth |
+| | `backlight` | `󰃠` `{percent}%` | — | Brightness up/down | — |
+| | `pulseaudio` | `󰕾` `{volume}%` | Toggle mute | Volume ±5% | — |
+| | `bluetooth` | `󰂱` / `󰂲` **Bluetooth** | Launch `kitty bluetoothctl` | — | Connected device details & battery |
+| | `custom/numlock` | `●` **NumLock** | — | — | NumLock status (ON / OFF) |
 
 ---
 
 ## 🎨 Color Palette & Theming
 
-Designed around a deep night blue backdrop with high-contrast, vibrant functional accents:
+The bar uses a custom **Deep Night Blue** theme with vibrant Tokyo-Night inspired accents:
 
-| Swatch | Hex Code | Purpose / Elements |
-| :--- | :--- | :--- |
-| ![#050a1f](https://via.placeholder.com/15/050a1f/000000?text=+) `#050a1f` | **Extreme Dark Blue** | Main Waybar background |
-| ![#c0caf5](https://via.placeholder.com/15/c0caf5/000000?text=+) `#c0caf5` | **Soft Lavender** | Default foreground text |
-| ![#5b9dff](https://via.placeholder.com/15/5b9dff/000000?text=+) `#5b9dff` | **Accent Blue** | Arch logo, Clock box, Active workspace, Bluetooth active |
-| ![#2dd4bf](https://via.placeholder.com/15/2dd4bf/000000?text=+) `#2dd4bf` | **Teal** | Weather module, Battery charging/plugged |
-| ![#ffa726](https://via.placeholder.com/15/ffa726/000000?text=+) `#ffa726` | **Vibrant Orange** | CPU normal state, Battery warning state |
-| ![#ff5cf0](https://via.placeholder.com/15/ff5cf0/000000?text=+) `#ff5cf0` | **Neon Magenta** | Memory (RAM) normal state |
-| ![#4ade80](https://via.placeholder.com/15/4ade80/000000?text=+) `#4ade80` | **Mint Green** | Battery normal state, NumLock active (`●`) |
-| ![#22d3ee](https://via.placeholder.com/15/22d3ee/000000?text=+) `#22d3ee` | **Cyan** | Network module |
-| ![#facc15](https://via.placeholder.com/15/facc15/000000?text=+) `#facc15` | **Yellow** | Backlight / Display brightness |
-| ![#b388ff](https://via.placeholder.com/15/b388ff/000000?text=+) `#b388ff` | **Purple** | PulseAudio volume |
-| ![#ff5470](https://via.placeholder.com/15/ff5470/000000?text=+) `#ff5470` | **Coral Red** | Critical alerts, Muted audio, Disconnected Wi-Fi, NumLock off |
+| Swatch | Color Name | Hex Code | Purpose / Affected Elements |
+| :---: | :--- | :---: | :--- |
+| ⬛ | **Extreme Dark Blue** | `#050a1f` | Main Waybar background (`window#waybar`) |
+| ⬜ | **Soft Lavender** | `#c0caf5` | Default foreground text and tooltip text |
+| 🟦 | **Accent Blue** | `#5b9dff` | Arch logo, Clock box, Active workspace, Bluetooth active |
+| 🩵 | **Cyan** | `#22d3ee` | Network signal indicator (`#network`) |
+| 🟢 | **Teal** | `#2dd4bf` | Weather module, Battery charging & plugged state |
+| 🟩 | **Mint Green** | `#4ade80` | Battery normal state, NumLock active state (`●`) |
+| 🟨 | **Vibrant Yellow** | `#facc15` | Display backlight / brightness (`#backlight`) |
+| 🟧 | **Bright Orange** | `#ffa726` | CPU normal state, Battery warning state |
+| 🟪 | **Neon Magenta** | `#ff5cf0` | Memory (RAM) normal state (`#memory`) |
+| 🟣 | **Soft Purple** | `#b388ff` | PulseAudio volume level (`#pulseaudio`) |
+| 🟥 | **Coral Red** | `#ff5470` | Critical alerts (CPU/RAM/Bat), Muted audio, Offline Wi-Fi, NumLock off |
+| 🔘 | **Muted Slate** | `#565f89` | Inactive workspace buttons, Bluetooth standby (`#bluetooth.off`) |
 
 ---
 
