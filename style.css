@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-    background-color: #000000;
+    background-color: #050a1f;
     color: #c0caf5;
     padding: 0 8px;
 }
@@ -25,7 +25,7 @@ tooltip label {
 .modules-left > widget > *,
 .modules-center > widget > *,
 .modules-right > widget > * {
-    margin: 1px 4px;
+    margin: 1px 2px;
 }
 
 #custom-logo {
@@ -93,83 +93,61 @@ tooltip label {
 #backlight,
 #pulseaudio,
 #bluetooth {
-    padding: 0 11px;
+    padding: 0 6px;
     border-radius: 9px;
+    font-weight: 700;
     transition: all 0.25s ease;
 }
 
 #custom-weather {
     color: #2dd4bf;
-    background-color: rgba(45, 212, 191, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.5);
 }
 
 #cpu {
     color: #ffa726;
-    background-color: rgba(255, 167, 38, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(255, 167, 38, 0.5);
 }
 
 #cpu.warning {
     color: #ff8c42;
-    background-color: rgba(255, 140, 66, 0.22);
-    box-shadow: inset 0 0 0 1px rgba(255, 140, 66, 0.6);
 }
 
 #cpu.critical {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.3);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.7);
 }
 
 #memory {
     color: #ff5cf0;
-    background-color: rgba(255, 92, 240, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(255, 92, 240, 0.5);
 }
 
 #memory.warning {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.25);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.6);
 }
 
 #memory.critical {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.3);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.7);
 }
 
 #battery {
     color: #4ade80;
-    background-color: rgba(74, 222, 128, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(74, 222, 128, 0.5);
 }
 
 #battery.charging,
 #battery.plugged {
     color: #2dd4bf;
-    background-color: rgba(45, 212, 191, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.5);
 }
 
 #battery.warning {
     color: #ffa726;
-    background-color: rgba(255, 167, 38, 0.22);
-    box-shadow: inset 0 0 0 1px rgba(255, 167, 38, 0.6);
 }
 
 @keyframes blink {
     to {
-        background-color: #ff5470;
-        color: #1a1b26;
+        color: #ff9eb5;
     }
 }
 
 #battery.critical:not(.charging) {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.3);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.7);
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: steps(4);
@@ -179,48 +157,46 @@ tooltip label {
 
 #network {
     color: #22d3ee;
-    background-color: rgba(34, 211, 238, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.5);
 }
 
 #network.disconnected {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.25);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.6);
 }
 
 #backlight {
     color: #facc15;
-    background-color: rgba(250, 204, 21, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.5);
 }
 
 #pulseaudio {
     color: #b388ff;
-    background-color: rgba(179, 136, 255, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(179, 136, 255, 0.5);
 }
 
 #pulseaudio.muted {
     color: #ff5470;
-    background-color: rgba(255, 84, 112, 0.25);
-    box-shadow: inset 0 0 0 1px rgba(255, 84, 112, 0.6);
 }
 
 #bluetooth {
     color: #5b9dff;
-    background-color: rgba(91, 157, 255, 0.18);
-    box-shadow: inset 0 0 0 1px rgba(91, 157, 255, 0.5);
+    margin-right: 10px;
+}
+
+#custom-numlock {
+    padding: 0 6px;
+    font-size: 15px;
+}
+
+#custom-numlock.on {
+    color: #4ade80;
+}
+
+#custom-numlock.off {
+    color: #ff5470;
 }
 
 #bluetooth.off {
     color: #565f89;
-    background-color: rgba(86, 95, 137, 0.15);
-    box-shadow: inset 0 0 0 1px rgba(86, 95, 137, 0.4);
 }
 
 #bluetooth.disabled {
     color: #3b4261;
-    background-color: rgba(59, 66, 97, 0.15);
-    box-shadow: inset 0 0 0 1px rgba(59, 66, 97, 0.4);
 }
