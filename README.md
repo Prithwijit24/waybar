@@ -1,162 +1,224 @@
-# Waybar — Prithwijit's Rice
+<div align="center">
 
-A compact (25px) Hyprland status bar with a dark-blue theme, value-reactive icons,
-a clickable app drawer, and a live NumLock indicator.
+# ⚡ Minimalist Waybar Rice
 
-```
-┌─ left ───────────────┬──── center ────┬────────────────────────── right ──────────────────────────┐
-│ 󰣇 | 1 2 3 | firefox │    Sat 23 Aug │  󰖃 29°C  󰲋 12%  󰻟 40%  󰚥 88%  󰖩 72%  󰔆 60%  󰕾 55%  󰂱  ●  │
-└──────────────────────┴────────────────┴───────────────────────────────────────────────────────────┘
-   logo  ws  window          clock          weather cpu ram bat net lite vol  bt   numlk
-```
+A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** with a Deep Dark Blue palette, value-reactive color indicators, custom GTK3 App Drawer, and instant hardware polling.
 
----
+[![Waybar](https://img.shields.io/badge/Waybar-0.9+-blue?style=flat-square&logo=wayland&logoColor=white)](https://github.com/Alexays/Waybar)
+[![Hyprland](https://img.shields.io/badge/WM-Hyprland-00c8ff?style=flat-square&logo=arch-linux&logoColor=white)](https://hyprland.org/)
+[![Theme](https://img.shields.io/badge/Theme-Deep%20Night%20Blue-1f2335?style=flat-square&colorA=050a1f&colorB=5b9dff)](#-palette)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-## Layout (where things live)
-
-| Zone | Modules | What it shows |
-|------|---------|---------------|
-| **Left** | `custom/logo` · `hyprland/workspaces` · `hyprland/window` | App-launcher button, workspace IDs, focused window title |
-| **Center** | `clock` | Date + time (scroll to change month) |
-| **Right** | `custom/weather` · `cpu` · `memory` · `battery` · `network` · `backlight` · `pulseaudio` · `bluetooth` · `custom/numlock` | System stats, ordered left→right |
-
-Reorder anything by editing `modules-left` / `modules-center` / `modules-right`
-in `config.jsonc` (line 7–9).
+</div>
 
 ---
 
-## Module Legend — what each icon means
+## 📸 Layout Overview
 
-| Icon | Module | Meaning | Color states |
-|------|--------|---------|--------------|
-| 󰣇 | `custom/logo` | Click → app drawer | 🔵 `#5b9dff` |
-| `1 2 3` | `hyprland/workspaces` | Workspace switcher (click to activate) | active 🔵, urgent 🔴 `#ff5470` |
-| `firefox` | `hyprland/window` | Title of the focused window | ⚪ `#9aa5ce` |
-| 🕐 | `clock` | Date + time, calendar on hover | box 🔵 `#5b9dff` |
-| 🌡 | `custom/weather` | Temp + city (Kolkata), click for full report | 🟢 `#2dd4bf` |
-| 󰲋 | `cpu` | CPU usage % (scroll/click for load) | 🟠 normal `#ffa726` · 🟠 warn · 🔴 crit `#ff5470` |
-| 󰻟 (fa-memory) | `memory` | RAM usage % | 🩷 `#ff5cf0` · 🔴 warn/crit |
-| 󰚥 / 󰁹 | `battery` | Capacity + icon; charging shows 󰂄 / plugged 󰚥 | 🟢 `#4ade80` · 🟢 charging `#2dd4bf` · 🟠 warn · 🔴 crit (blinks) |
-| 󰖩 / 󰖮 | `network` | Wi-Fi signal % or ethernet; click → `nmtui` | 🔵 `#22d3ee` · 🔴 disconnected |
-| 󰔆 | `backlight` | Screen brightness % (scroll to change) | 🟡 `#facc15` |
-| 󰕾 / 󰖁 | `pulseaudio` | Volume %; BT headset 󰥰; muted 󰖁; click → mute | 🟣 `#b388ff` · 🔴 muted |
-| 󰂱 / 󰂲 | `bluetooth` | On/connected 󰂱 · off 󰂲; click → `bluetoothctl` | 🔵 on · ⚪ off `#565f89` · ⬛ disabled `#3b4261` |
-| ● | `custom/numlock` | NumLock state | 🟢 on `#4ade80` · 🔴 off `#ff5470` |
-
----
-
-## How to change things (quick reference)
-
-### 🎨 Bar background & global look
-`style.css` → `window#waybar` (line 8):
-```css
-window#waybar { background-color: #050a1f; color: #c0caf5; padding: 0 8px; }
-```
-- `#050a1f` = extreme dark blue · change to taste (e.g. `#0a1124` lighter, `#03060f` near-black).
-- Bar **height** is set in `config.jsonc` `"height": 25` (line 4).
-
-### 🔤 Change an icon
-Icons are **Nerd Font** glyphs. Edit the `format` / `format-icons` field for the
-module in `config.jsonc`. Example — battery icons (line 85):
-```jsonc
-"format-icons": ["󰁺","󰁼","󰁾","󰂀","󰂂","󰁹"]
-```
-Find glyphs with `nerd-fonts` picker or `gucharmap` (search "battery").
-
-### 🌈 Change a module's color
-In `style.css`, target the module id (e.g. `#cpu`, `#custom-weather`). To add a
-state (warning/critical), add a `.warning` / `.critical` rule like `cpu` does
-(lines 106–116).
-
-### 🔢 Change thresholds (warn/crit)
-In `config.jsonc`, each module has a `states` block:
-```jsonc
-"cpu": { "states": { "normal": 40, "warning": 70, "critical": 90 } }
+```text
+┌── LEFT ──────────────────────────────┬────── CENTER ──────┬────────────────────────────────── RIGHT ──────────────────────────────────┐
+│  󰣇  │ 1 2 3 │  code README.md        │   Sat 23 Aug 08:15 │  󰖃 29°C  󰲋 12%  󰻟 40%  󰚥 88%  󰖩 72%  󰔆 60%  󰕾 55%  󰂱 90%  ●   │
+└──┴───────────────────────────────────┴────────────────────┴───────────────────────────────────────────────────────────────────────────┘
+   │     │        │                         │                  │        │      │      │      │      │      │      │      │
+   │     │        └─ Focused Window         └─ Clock/Calendar  │        │      │      │      │      │      │      │      └─ NumLock (LED)
+   │     └─ Workspaces                                         │        │      │      │      │      │      │      └─ Bluetooth & Battery
+   └─ App Drawer Launcher                                      │        │      │      │      │      │      └─ Volume (PulseAudio)
+                                                               │        │      │      │      │      └─ Brightness (Backlight)
+                                                               │        │      │      │      └─ Wi-Fi / Ethernet (Network)
+                                                               │        │      │      └─ Battery Capacity & State
+                                                               │        │      └─ RAM Usage
+                                                               │        └─ CPU Usage
+                                                               └─ Weather & Notification
 ```
 
-### ⏱ Change update frequency
-Set `"interval"` (seconds; **floats work**, e.g. `0.2`). Higher = less CPU.
-- `cpu`/`memory`: `2` · `weather`: `1800` (30 min) · `numlock`: `0.2`.
+---
 
-### ➕ Add a new module
-1. Append its name to the right `modules-*` array in `config.jsonc`.
-2. Add a config block (see any existing block) — built-in (e.g. `"disk"`)
-   or `custom/x` with an `exec`.
-3. (Optional) add styling in `style.css` under `#custom-x`.
+## ✨ Features
 
-### 🧩 Custom scripts (see [Scripts](#scripts))
-`custom/*` modules run a command and print either plain text or JSON
-(`return-type: "json"` → `{"text": "...", "class": "...", "tooltip": "..."}`).
+- **🚀 Custom GTK3 App Drawer (`scripts/appdrawer.py`):**
+  - Grouped & color-coded by package manager source (`[pacman]`, `[yay]`, `[paru]`, `[flatpak]`, `[snap]`).
+  - Search filter input with instant live query.
+  - Dedicated quick power actions (Reboot, Shutdown, Logout).
+- **📊 Value-Reactive Hardware Monitoring:**
+  - Dynamic color thresholds for CPU, RAM, and Battery (Normal ➔ Warning ➔ Critical).
+  - Smooth blinking CSS animation when battery hits critical level without charging.
+- **🌤 Live Weather & Desktop Notification (`scripts/weather.py`):**
+  - Weather fetched and cached from WeatherAPI.
+  - Click to display a formatted rich notification via `notify-send`.
+- **⚡ Instant NumLock LED Indicator (`scripts/numlock.py`):**
+  - Fast sysfs brightness polling for real-time NumLock LED state without latency.
+- **🎛 Integrated Controls & Quick Menus:**
+  - Left-click on network opens `nmtui` in Kitty.
+  - Left-click on bluetooth opens `bluetoothctl` in Kitty.
+  - Scroll on volume to adjust levels (±5%), click to toggle mute.
+  - Scroll on clock to navigate calendar months.
 
 ---
 
-## Theme palette
+## 🧩 Modules & Interaction Reference
 
-| Role | Color | Hex |
-|------|-------|-----|
-| Bar background | 🔵 extreme dark blue | `#050a1f` |
-| Default text | ⚪ soft lavender | `#c0caf5` |
-| Accent / logo / clock / active ws / BT-on | 🔵 blue | `#5b9dff` |
-| Weather | 🟢 teal | `#2dd4bf` |
-| CPU | 🟠 orange | `#ffa726` |
-| Memory | 🩷 magenta | `#ff5cf0` |
-| Battery / NumLock-on | 🟢 green | `#4ade80` |
-| Network | 🔵 cyan | `#22d3ee` |
-| Backlight | 🟡 yellow | `#facc15` |
-| Pulseaudio | 🟣 purple | `#b388ff` |
-| Danger / muted / critical / urgent | 🔴 red | `#ff5470` |
-
----
-
-## Scripts (`scripts/`)
-
-| File | Role | Notes |
-|------|------|-------|
-| `numlock.py` | Prints NumLock state as a colored ●, then **exits** | Polls `/sys/class/leds/*numlock/brightness`; re-run by waybar every `0.2s` |
-| `weather.py` | Fetches weather, caches to `cache/weather.json` | Exits after one print (waybar re-runs every 1800s) |
-| `appdrawer.py` | GTK3 app launcher window | Groups apps by source (pacman/yay/snap/flatpak…), power buttons pinned bottom-right |
-| `gen_applist.sh` | Builds `~/.cache/waybar/appdrawer.{list,map}` | Classifies installed apps; run by `appdrawer.py` on open |
-| `launch_drawer.sh` | Detached launcher for the drawer | `setsid` + Wayland backend, logs to `/tmp/drawer.log` |
-
-The app drawer opens from the 󰣇 logo (left). Apps are colored per source:
-pacman 🔵 `#7dcfff`, yay 🟡 `#ffc777`, paru 🟣 `#bb9af7`, flatpak 🟢 `#9ece6a`,
-snap 🟢 `#73daca`. Power buttons: 󰍣 reboot · 󰐥 shutdown · 󰗽 logout.
+| Zone | Module | Icon / Preview | Click Action | Scroll Action | Hover Tooltip |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Left** | `custom/logo` | `󰣇` | Launch GTK3 App Drawer | — | `"App drawer"` |
+| | `hyprland/workspaces` | `1` `2` `3` | Switch workspace | — | — |
+| | `hyprland/window` | `title` | — | — | Full window title |
+| **Center** | `clock` | `Sat 23 Aug 08:15 PM` | — | Shift month up/down | Calendar view with today highlighted |
+| **Right** | `custom/weather` | `󰖃 29°C Kolkata` | Rich weather notification | — | Detailed weather report |
+| | `cpu` | `󰲋 {usage}%` | — | — | CPU load average & Max frequency |
+| | `memory` | `󰻟 {percent}%` | — | — | Memory used / total in GiB |
+| | `battery` | `{capacity}% 󰁹` | — | — | Time remaining (alternate mode) |
+| | `network` | `󰖩 {signal}%` | Launch `kitty nmtui` | — | SSID, IP/CIDR, Up/Down bandwidth |
+| | `backlight` | `󰃠 {percent}%` | — | Brightness up/down | — |
+| | `pulseaudio` | `󰕾 {volume}%` | Toggle mute | Volume ±5% | — |
+| | `bluetooth` | `󰂱` / `󰂲` | Launch `kitty bluetoothctl` | — | Connected device details & battery |
+| | `custom/numlock` | `●` | — | — | NumLock status (ON / OFF) |
 
 ---
 
-## Developer gotchas (learned the hard way)
+## 🎨 Color Palette & Theming
 
-- **⚠️ waybar only displays a `custom/exec` module when the process *exits*.**
-  It does **not** stream a long-running command. So `numlock.py` must print once
-  and `sys.exit(0)`; updates come from waybar re-running it at `interval`.
-  (This is why a persistent poll left the indicator blank.)
-- **📛 `inotify` does not fire on sysfs.** Watching
-  `/sys/class/leds/*numlock/brightness` with `inotify` never emits events, so the
-  script must *poll* (every ~0.1–0.25s) instead of blocking on a watch.
-- **🔣 JSON `\u` escapes are exactly 4 hex digits.** A 5-digit codepoint
-  (e.g. many Nerd Font glyphs) written as `\u1F#####` corrupts the JSON — insert
-  the literal glyph character instead, or use a 4-digit Private-Use codepoint
-  like `\uefc5` (fa-memory).
+Designed around a deep night blue backdrop with high-contrast, vibrant functional accents:
+
+| Swatch | Hex Code | Purpose / Elements |
+| :--- | :--- | :--- |
+| ![#050a1f](https://via.placeholder.com/15/050a1f/000000?text=+) `#050a1f` | **Extreme Dark Blue** | Main Waybar background |
+| ![#c0caf5](https://via.placeholder.com/15/c0caf5/000000?text=+) `#c0caf5` | **Soft Lavender** | Default foreground text |
+| ![#5b9dff](https://via.placeholder.com/15/5b9dff/000000?text=+) `#5b9dff` | **Accent Blue** | Arch logo, Clock box, Active workspace, Bluetooth active |
+| ![#2dd4bf](https://via.placeholder.com/15/2dd4bf/000000?text=+) `#2dd4bf` | **Teal** | Weather module, Battery charging/plugged |
+| ![#ffa726](https://via.placeholder.com/15/ffa726/000000?text=+) `#ffa726` | **Vibrant Orange** | CPU normal state, Battery warning state |
+| ![#ff5cf0](https://via.placeholder.com/15/ff5cf0/000000?text=+) `#ff5cf0` | **Neon Magenta** | Memory (RAM) normal state |
+| ![#4ade80](https://via.placeholder.com/15/4ade80/000000?text=+) `#4ade80` | **Mint Green** | Battery normal state, NumLock active (`●`) |
+| ![#22d3ee](https://via.placeholder.com/15/22d3ee/000000?text=+) `#22d3ee` | **Cyan** | Network module |
+| ![#facc15](https://via.placeholder.com/15/facc15/000000?text=+) `#facc15` | **Yellow** | Backlight / Display brightness |
+| ![#b388ff](https://via.placeholder.com/15/b388ff/000000?text=+) `#b388ff` | **Purple** | PulseAudio volume |
+| ![#ff5470](https://via.placeholder.com/15/ff5470/000000?text=+) `#ff5470` | **Coral Red** | Critical alerts, Muted audio, Disconnected Wi-Fi, NumLock off |
 
 ---
 
-## Reloading
+## 📦 Prerequisites & Dependencies
 
-waybar auto-reloads CSS on change (`reload_style_on_change: true`). For config
-changes, restart it:
+To ensure all custom scripts and interactive modules function properly, install the following packages:
+
 ```bash
-pkill -x waybar; sleep 1; waybar > /tmp/waybar.log 2>&1 &
-# or just log out / reload your Hyprland config
+# Core Waybar & System Tools (Arch / Hyprland)
+sudo pacman -S waybar hyprland kitty pulseaudio-utils networkmanager bluez-utils jq libnotify
+
+# Python & GTK3 (for App Drawer, Weather & NumLock)
+sudo pacman -S python python-requests python-gobject gtk3
+
+# Fonts (Required for glyphs and icons)
+sudo pacman -S ttf-nerd-fonts-symbols noto-fonts noto-fonts-cjk
+# (Optional fallback: ttf-font-awesome, ttf-jetbrains-mono-nerd)
 ```
-Check `/tmp/waybar.log` for errors.
 
 ---
 
-## Files
+## 🚀 Installation & Setup
 
+1. **Clone or Copy** this repository into your user config folder:
+   ```bash
+   git clone <repo-url> ~/.config/waybar
+   # or copy into ~/.config/waybar
+   ```
+
+2. **Make Scripts Executable**:
+   ```bash
+   chmod +x ~/.config/waybar/scripts/*.sh ~/.config/waybar/scripts/*.py
+   ```
+
+3. **Verify Script Paths**:
+   Ensure `config.jsonc` paths point to your home directory:
+   ```bash
+   # Check path references in config.jsonc
+   sed -i "s|/home/prithwijit|$HOME|g" ~/.config/waybar/config.jsonc
+   sed -i "s|/home/prithwijit|$HOME|g" ~/.config/waybar/scripts/launch_drawer.sh
+   ```
+
+4. **Launch or Reload Waybar**:
+   ```bash
+   pkill -x waybar; waybar > /tmp/waybar.log 2>&1 &
+   ```
+
+---
+
+## ⚙️ Customization Guide
+
+### 1. Change Weather Location or API Key
+Open `scripts/weather.py` and modify lines 9–12:
+```python
+URL = (
+    "http://api.weatherapi.com/v1/current.json"
+    "?key=YOUR_API_KEY&q=your_city&aqi=yes"
+)
 ```
-config.jsonc   ← module layout, icons, thresholds, intervals
-style.css      ← colors, spacing, bars, animations
-scripts/       ← custom module logic + app drawer
-cache/         ← weather cache
+
+### 2. Adjust Module Thresholds (Warning / Critical)
+In `config.jsonc`, adjust the threshold percentage for CPU, RAM, or Battery:
+```jsonc
+"cpu": {
+    "states": {
+        "normal": 40,
+        "warning": 70,
+        "critical": 90
+    }
+},
+"memory": {
+    "states": {
+        "normal": 40,
+        "warning": 65,
+        "critical": 85
+    }
+}
 ```
+
+### 3. Change Bar Height or Position
+In `config.jsonc` (lines 2–4):
+```jsonc
+{
+    "layer": "bottom",       // "top" or "bottom"
+    "position": "bottom",    // "top", "bottom", "left", "right"
+    "height": 25             // Height in pixels
+}
+```
+
+### 4. Customize Colors & Appearance
+Edit `style.css`:
+- **Bar background**: Modify `window#waybar { background-color: #050a1f; }`.
+- **Clock highlight**: Modify `#clock { background-color: #5b9dff; color: #1a1b26; }`.
+- **Module colors**: Each module has its own ID block (`#cpu`, `#memory`, `#pulseaudio`, etc.).
+
+---
+
+## 📂 File Architecture
+
+```text
+~/.config/waybar/
+├── 📄 config.jsonc            # Module selection, layouts, actions, and intervals
+├── 🎨 style.css               # Tokyo-night dark blue theme, CSS transitions & animations
+├── 📁 cache/
+│   └── 📄 weather.json        # Cached response for weather module
+└── 📁 scripts/
+    ├── 🐍 appdrawer.py        # GTK3 app launcher with package manager categorization
+    ├── 📜 gen_applist.sh      # Scans .desktop files and classifies source (pacman/AUR/flatpak/snap)
+    ├── 📜 launch_drawer.sh    # Background detached launcher for app drawer
+    ├── 🐍 numlock.py          # Real-time /sys/class/leds NumLock state emitter
+    └── 🐍 weather.py          # WeatherAPI parser with tooltip & notification payload
+```
+
+---
+
+## 🛠 Developer Notes & Insights
+
+> [!TIP]
+> **Waybar Custom Exec Execution Model:**
+> Waybar's `custom/exec` modules update when the executed script **exits** (it does not stream persistent stdout). Scripts like `numlock.py` poll quickly for a small interval, output JSON, and exit immediately so Waybar re-runs them cleanly at the specified interval.
+
+> [!NOTE]
+> **Sysfs & Inotify:**
+> The Linux kernel does not emit standard `inotify` events for changes in `/sys/class/leds/*`. Fast micro-polling (e.g. `0.2s`) is the standard, reliable method to capture LED toggle events instantaneously.
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. Feel free to fork, customize, and adapt for your own desktop rice!
