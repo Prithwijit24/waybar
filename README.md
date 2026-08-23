@@ -42,11 +42,14 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
 - **📊 Value-Reactive Hardware Monitoring:**
   - Dynamic color thresholds for CPU, RAM, and Battery (Normal ➔ Warning ➔ Critical).
   - Smooth blinking CSS animation when battery hits critical level without charging.
+  - Responsive subtle hover highlight on right-side modules.
 - **🌤 Live Weather & Desktop Notification (`scripts/weather.py`):**
   - Weather fetched and cached from WeatherAPI.
+  - Condition-aware styling (Day/Night, Rainy, and Error states).
   - Click to display a formatted rich notification via `notify-send`.
 - **⚡ Instant NumLock LED Indicator (`scripts/numlock.py`):**
   - Fast sysfs brightness polling for real-time NumLock LED state without latency.
+  - Discrete Opal Silver (`#e2e8f0`) active and Dark Slate (`#414868`) inactive indicators.
 - **🎛 Integrated Controls & Quick Menus:**
   - Left-click on network opens `nmtui` in Kitty.
   - Left-click on bluetooth opens `bluetoothctl` in Kitty.
@@ -77,22 +80,30 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
 
 ## 🎨 Color Palette & Theming
 
-The bar uses a custom **Deep Night Blue** theme with vibrant Tokyo-Night inspired accents:
+The bar uses a custom **Deep Night Blue** theme with refined Tokyo-Night inspired pastel accents:
 
 | Swatch | Color Name | Hex Code | Purpose / Affected Elements |
 | :---: | :--- | :---: | :--- |
 | ⬛ | **Extreme Dark Blue** | `#050a1f` | Main Waybar background (`window#waybar`) |
 | ⬜ | **Soft Lavender** | `#c0caf5` | Default foreground text and tooltip text |
-| 🟦 | **Accent Blue** | `#5b9dff` | Arch logo, Clock box, Active workspace, Bluetooth active |
-| 🩵 | **Cyan** | `#22d3ee` | Network signal indicator (`#network`) |
-| 🟢 | **Teal** | `#2dd4bf` | Weather module, Battery charging & plugged state |
-| 🟩 | **Mint Green** | `#4ade80` | Battery normal state, NumLock active state (`●`) |
-| 🟨 | **Vibrant Yellow** | `#facc15` | Display backlight / brightness (`#backlight`) |
-| 🟧 | **Bright Orange** | `#ffa726` | CPU normal state, Battery warning state |
-| 🟪 | **Neon Magenta** | `#ff5cf0` | Memory (RAM) normal state (`#memory`) |
-| 🟣 | **Soft Purple** | `#b388ff` | PulseAudio volume level (`#pulseaudio`) |
-| 🟥 | **Coral Red** | `#ff5470` | Critical alerts (CPU/RAM/Bat), Muted audio, Offline Wi-Fi, NumLock off |
-| 🔘 | **Muted Slate** | `#565f89` | Inactive workspace buttons, Bluetooth standby (`#bluetooth.off`) |
+| 🟦 | **Accent Blue** | `#5b9dff` | Arch logo (`#custom-logo`), Clock box (`#clock`), Active workspace button |
+| 🩵 | **Soft Aqua / Seafoam** | `#5eead4` | Weather module normal/day state (`#custom-weather`) |
+| 🌧️ | **Rain Blue** | `#70c0e8` | Weather rainy state (`#custom-weather.rainy`) |
+| 🌙 | **Night Blue** | `#89b4fa` | Weather night state (`#custom-weather.night`) |
+| 🟧 | **Warm Terracotta** | `#ea9978` | CPU normal state (`#cpu`) |
+| 🌸 | **Dusty Rose** | `#e89bbd` | Memory (RAM) normal state (`#memory`) |
+| 🟩 | **Leaf Green** | `#8cd867` | Battery normal state (`#battery`) |
+| 🟢 | **Mint Green** | `#6ee7b7` | Battery charging & plugged state (`#battery.charging`, `#battery.plugged`) |
+| 🟨 | **Warm Sunbeam / Gold** | `#ffd166` | Backlight (`#backlight`), Battery warning (`#battery.warning`) |
+| 🟠 | **Apricot Coral** | `#ff8c5a` | CPU warning (`#cpu.warning`), Memory warning (`#memory.warning`) |
+| 🟥 | **Tokyo Red / Crimson** | `#f7768e` | Critical alerts (`#cpu.critical`, `#memory.critical`, `#battery.critical`), Weather error, Urgent workspaces |
+| 🌐 | **Ice Sky Blue** | `#60cdff` | Network signal indicator (`#network`) |
+| 🟣 | **Lavender-Indigo** | `#a78bfa` | PulseAudio volume level (`#pulseaudio`) |
+| 🔵 | **Periwinkle / Sapphire** | `#7287fd` | Bluetooth active / connected (`#bluetooth`) |
+| ⚪ | **Opal Silver** | `#e2e8f0` | NumLock active state (`#custom-numlock.on`) |
+| 🔘 | **Muted Slate** | `#565f89` | Inactive workspaces, Muted audio, Offline network, Bluetooth off |
+| 🌑 | **Dark Slate** | `#414868` | NumLock inactive state (`#custom-numlock.off`) |
+| ⬛ | **Deep Indigo** | `#3b4261` | Bluetooth disabled state (`#bluetooth.disabled`) |
 
 ---
 
@@ -186,7 +197,8 @@ In `config.jsonc` (lines 2–4):
 Edit `style.css`:
 - **Bar background**: Modify `window#waybar { background-color: #050a1f; }`.
 - **Clock highlight**: Modify `#clock { background-color: #5b9dff; color: #1a1b26; }`.
-- **Module colors**: Each module has its own ID block (`#cpu`, `#memory`, `#pulseaudio`, etc.).
+- **Hover effects**: Configured under `#custom-weather:hover, #cpu:hover, ... { background-color: rgba(255, 255, 255, 0.06); }`.
+- **Module colors & state classes**: Individual module and sub-state selectors (`#custom-weather.rainy`, `#custom-weather.night`, `#battery.warning`, `#custom-numlock.on`, etc.).
 
 ---
 

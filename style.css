@@ -99,45 +99,72 @@ tooltip label {
     transition: all 0.25s ease;
 }
 
-#custom-weather {
-    color: #2dd4bf;
+#custom-weather:hover,
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#network:hover,
+#backlight:hover,
+#pulseaudio:hover,
+#bluetooth:hover {
+    background-color: rgba(255, 255, 255, 0.06);
 }
 
+/* 1. Weather: Soft Aqua / Seafoam */
+#custom-weather {
+    color: #5eead4;
+}
+
+#custom-weather.rainy {
+    color: #70c0e8;
+}
+
+#custom-weather.night {
+    color: #89b4fa;
+}
+
+#custom-weather.error {
+    color: #f7768e;
+}
+
+/* 2. CPU: Warm Terracotta / Apricot Coral */
 #cpu {
-    color: #ffa726;
+    color: #ea9978;
 }
 
 #cpu.warning {
-    color: #ff8c42;
+    color: #ff8c5a;
 }
 
 #cpu.critical {
-    color: #ff5470;
+    color: #f7768e;
 }
 
+/* 3. Memory: Dusty Rose / Soft Orchid */
 #memory {
-    color: #ff5cf0;
+    color: #e89bbd;
 }
 
 #memory.warning {
-    color: #ff5470;
+    color: #ff8c5a;
 }
 
 #memory.critical {
-    color: #ff5470;
+    color: #f7768e;
 }
 
+/* 4. Battery: Leaf Green */
 #battery {
-    color: #4ade80;
+    color: #8cd867;
 }
 
 #battery.charging,
 #battery.plugged {
-    color: #2dd4bf;
+    color: #6ee7b7;
 }
 
 #battery.warning {
-    color: #ffa726;
+    color: #ffd166;
 }
 
 @keyframes blink {
@@ -147,7 +174,7 @@ tooltip label {
 }
 
 #battery.critical:not(.charging) {
-    color: #ff5470;
+    color: #f7768e;
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: steps(4);
@@ -155,42 +182,33 @@ tooltip label {
     animation-direction: alternate;
 }
 
+/* 5. Network: Ice Sky Blue */
 #network {
-    color: #22d3ee;
+    color: #60cdff;
 }
 
 #network.disconnected {
-    color: #ff5470;
+    color: #565f89;
 }
 
+/* 6. Backlight: Warm Sunbeam / Soft Gold */
 #backlight {
-    color: #facc15;
+    color: #ffd166;
 }
 
+/* 7. PulseAudio: Violet / Lavender-Indigo */
 #pulseaudio {
-    color: #b388ff;
+    color: #a78bfa;
 }
 
 #pulseaudio.muted {
-    color: #ff5470;
+    color: #565f89;
 }
 
+/* 8. Bluetooth: Sapphire / Periwinkle */
 #bluetooth {
-    color: #5b9dff;
+    color: #7287fd;
     margin-right: 10px;
-}
-
-#custom-numlock {
-    padding: 0 6px;
-    font-size: 15px;
-}
-
-#custom-numlock.on {
-    color: #4ade80;
-}
-
-#custom-numlock.off {
-    color: #ff5470;
 }
 
 #bluetooth.off {
@@ -199,4 +217,18 @@ tooltip label {
 
 #bluetooth.disabled {
     color: #3b4261;
+}
+
+/* 9. NumLock: Opal Silver (Active) / Slate (Inactive) */
+#custom-numlock {
+    padding: 0 6px;
+    font-size: 15px;
+}
+
+#custom-numlock.on {
+    color: #e2e8f0;
+}
+
+#custom-numlock.off {
+    color: #414868;
 }
