@@ -1,0 +1,150 @@
+{
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 25,
+    "reload_style_on_change": true,
+
+    "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/weather", "cpu", "memory", "battery", "network", "backlight", "pulseaudio", "bluetooth"],
+
+    "custom/logo": {
+        "format": "󰣇",
+        "tooltip-format": "App drawer",
+        "on-click": "/home/prithwijit/.config/waybar/scripts/launch_drawer.sh"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+
+    "hyprland/window": {
+        "max-length": 45,
+        "separate-outputs": true
+    },
+
+    "clock": {
+        "format": "{:%a %d %b   %I:%M %p}",
+        "interval": 60,
+        "tooltip-format": "<tt><big>{calendar}</big></tt>",
+        "calendar": {
+            "format": {
+                "today": "<span color='#f7768e'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "custom/weather": {
+        "exec": "$HOME/.config/waybar/scripts/weather.py",
+        "return-type": "json",
+        "format": "{text}",
+        "interval": 1800,
+        "tooltip": true,
+        "on-click": "notify-send -t 8000 'Weather' \"$(python $HOME/.config/waybar/scripts/weather.py | jq -r .tooltip)\""
+    },
+
+    "cpu": {
+        "format": "\uf2db {usage}%",
+        "interval": 2,
+        "states": {
+            "normal": 40,
+            "warning": 70,
+            "critical": 90
+        },
+        "tooltip-format": "load: {load}\nfreq (max): {max_frequency} GHz"
+    },
+
+    "memory": {
+        "format": "\uefc5 {}%",
+        "interval": 2,
+        "states": {
+            "normal": 40,
+            "warning": 65,
+            "critical": 85
+        },
+        "tooltip-format": "used {used} GiB / {total} GiB"
+    },
+
+    "battery": {
+        "interval": 30,
+        "states": {
+            "good": 95,
+            "warning": 50,
+            "critical": 20
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% {icon} 󰂄",
+        "format-plugged": "{capacity}% {icon} 󰚥",
+        "format-alt": "{time} {icon}",
+        "format-icons": [
+            "󰁺",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+
+    "network": {
+        "format-wifi": "\uf1eb {signalStrength}%",
+        "format-ethernet": "{ifname}",
+        "format-disconnected": "\uf1eb off",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}/{cidr}\n\u2193{bandwidthDownBytes} \u2191{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}\n\u2193{bandwidthDownBytes} \u2191{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "disconnected",
+        "on-click": "kitty nmtui"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+        "states": {
+            "low": 30,
+            "medium": 70,
+            "high": 100
+        },
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": "󰖁 {volume}%",
+        "format-icons": {
+            "headphone": "󰥰",
+            "hands-free": "󰥰",
+            "headset": "󰥰",
+            "phone": "󰥰",
+            "portable": "󰥰",
+            "car": "󰥰",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "smooth-scroll-threshold": 5,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "tooltip": false
+    },
+
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "format-connected-battery": " {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\n{controller_address}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\n{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+        "on-click": "kitty bluetoothctl"
+    }
+}
