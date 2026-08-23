@@ -93,14 +93,14 @@ tooltip label {
 }
 
 #clock {
-    background-color: rgba(255, 184, 77, 0.14);
-    color: #e8c99a;
+    background-color: rgba(232, 139, 172, 0.14);
+    color: #e8b4c8;
     font-weight: 600;
     padding: 0 14px;
     border-radius: 9px;
-    border: 1px solid rgba(255, 184, 77, 0.28);
-    box-shadow: inset 0 0 0 1px rgba(255, 184, 77, 0.06), 0 0 10px rgba(255, 184, 77, 0.20), 0 0 22px rgba(255, 184, 77, 0.09);
-    text-shadow: 0 0 8px rgba(255, 184, 77, 0.42);
+    border: 1px solid rgba(232, 139, 172, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(232, 139, 172, 0.06), 0 0 10px rgba(232, 139, 172, 0.20), 0 0 22px rgba(232, 139, 172, 0.09);
+    text-shadow: 0 0 8px rgba(232, 139, 172, 0.42);
 }
 
 #custom-weather,
