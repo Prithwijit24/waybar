@@ -5,7 +5,7 @@
     "reload_style_on_change": true,
 
     "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
+    "modules-center": ["clock#date", "clock#time"],
     "modules-right": ["custom/weather", "cpu", "memory", "battery", "network", "backlight", "pulseaudio", "bluetooth", "custom/numlock"],
 
     "custom/logo": {
@@ -25,8 +25,8 @@
         "separate-outputs": true
     },
 
-    "clock": {
-        "format": "{:%a %d %b   %I:%M %p}",
+    "clock#date": {
+        "format": "{:%a %d %b}",
         "interval": 60,
         "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "calendar": {
@@ -34,6 +34,15 @@
                 "today": "<span color='#f7768e'><b>{}</b></span>"
             }
         },
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "clock#time": {
+        "format": "{:%I:%M %p}",
+        "interval": 1,
         "actions": {
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"

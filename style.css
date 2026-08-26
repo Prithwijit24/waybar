@@ -9,6 +9,7 @@ window#waybar {
     background-color: #050a1f;
     color: #c0caf5;
     padding: 0 8px;
+    min-height: 26px;
     /* --- Glow: outer neon border + diffuse bloom upward --- */
     border-top: 1px solid rgba(91, 157, 255, 0.28);
     box-shadow:
@@ -34,6 +35,13 @@ tooltip label {
 .modules-center > widget > *,
 .modules-right > widget > * {
     margin: 1px 2px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 #custom-logo {
@@ -92,15 +100,22 @@ tooltip label {
     text-shadow: 0 0 10px rgba(154, 165, 206, 0.35);
 }
 
-#clock {
-    background-color: rgba(232, 139, 172, 0.14);
-    color: #e8b4c8;
+#clock.date {
+    color: #a9b1d6;
     font-weight: 600;
+    padding: 0 6px;
+    border-radius: 9px;
+}
+
+#clock.time {
+    background-color: rgba(255, 235, 59, 0.12);
+    color: #ffeb3b;
+    font-weight: 800;
     padding: 0 14px;
     border-radius: 9px;
-    border: 1px solid rgba(232, 139, 172, 0.28);
-    box-shadow: inset 0 0 0 1px rgba(232, 139, 172, 0.06), 0 0 10px rgba(232, 139, 172, 0.20), 0 0 22px rgba(232, 139, 172, 0.09);
-    text-shadow: 0 0 8px rgba(232, 139, 172, 0.42);
+    border: 1px solid rgba(255, 235, 59, 0.28);
+    box-shadow: inset 0 0 0 1px rgba(255, 235, 59, 0.06), 0 0 10px rgba(255, 235, 59, 0.25), 0 0 22px rgba(255, 235, 59, 0.10);
+    text-shadow: 0 0 8px rgba(255, 235, 59, 0.5);
 }
 
 #custom-weather,
