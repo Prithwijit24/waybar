@@ -2,7 +2,7 @@
 
 # ⚡ Minimalist Waybar Rice
 
-A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyprland** with a Deep Dark Blue palette, neon glow & ambient bloom, split center cluster (backlight · date · bold yellow time pill · volume), value-reactive color indicators, custom GTK3 App Drawer, and instant hardware polling.
+A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyprland** with a Deep Dark Blue palette, neon glow & ambient bloom, split center cluster (backlight · date · bold yellow time · volume), value-reactive color indicators, custom GTK3 App Drawer, and instant hardware polling.
 
 [![Waybar](https://img.shields.io/badge/Waybar-0.9+-blue?style=flat-square&logo=wayland&logoColor=white)](https://github.com/Alexays/Waybar)
 [![Hyprland](https://img.shields.io/badge/WM-Hyprland-00c8ff?style=flat-square&logo=arch-linux&logoColor=white)](https://hyprland.org/)
@@ -18,19 +18,19 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
 > Synced with `config.jsonc:7-9` — `modules-left` / `modules-center` / `modules-right`.
 
 ```text
-┌── LEFT ────────────────────┬─── CENTER ────────────────────────────┬─── RIGHT ──────────────────────────────────────┐
-│ 󰣇 │ 1 2 3 │ code README.md │ 󰃠 60% │ Sat 23 Aug │ 08:15 PM │ 󰕾 55% │ 󰖃 29°C │ 󰻟 40% │ 󰲋 12% │ 󰂀 88% │ 󰖩 72% │ 󰂱 │ ● │
-└───┴───────┴────────────────┴───────┴────────────┴──────────┴───────┴────────┴───────┴───────┴───────┴───────┴───┴───┘
-  │     │            │           │          │           │        │        │       │       │       │       │     │   │
-  │     │            │           │          │           │        │        │       │       │       │       │     │   └─ NumLock LED (custom/numlock)
-  │     │            │           │          │           │        │        │       │       │       │       │     └─ Bluetooth (bluetooth)
-  │     │            │           │          │           │        │        │       │       │       │       └─ Wi-Fi / Ethernet (network)
-  │     │            │           │          │           │        │        │       │       │       └─ Battery Capacity & State (battery)
-  │     │            │           │          │           │        │        │       │       └─ CPU Usage (cpu)
-  │     │            │           │          │           │        │        │       └─ Memory / RAM (memory)
+┌── LEFT ────────────────────┬─── CENTER ────────────────────────────┬─── RIGHT ──────────────────────────────────────────┐
+│ 󰣇 │ 1 2 3 │ code README.md │ 󰃠 60% │ Sat 23 Aug │ 08:15 PM │ 󰕾 55% │ 󰖃 29°C │ RAM 40% │ CPU 12% │ 88% 󰂀 │ 󰖩 72% │ 󰂱 │ ● │
+└───┴───────┴────────────────┴───────┴────────────┴──────────┴───────┴────────┴─────────┴─────────┴───────┴───────┴───┴───┘
+  │     │            │           │          │           │        │        │        │         │        │       │     │   │
+  │     │            │           │          │           │        │        │        │         │        │       │     │   └─ NumLock LED (custom/numlock)
+  │     │            │           │          │           │        │        │        │         │        │       │     └─ Bluetooth (bluetooth)
+  │     │            │           │          │           │        │        │        │         │        │       └─ Wi-Fi / Ethernet (network)
+  │     │            │           │          │           │        │        │        │         │        └─ Battery Capacity & State (battery)
+  │     │            │           │          │           │        │        │        │         └─ CPU Usage (cpu)
+  │     │            │           │          │           │        │        │        └─ Memory / RAM (memory)
   │     │            │           │          │           │        │        └─ Weather & Notification (custom/weather)
   │     │            │           │          │           │        └─ Volume Level & Mute (pulseaudio)
-  │     │            │           │          │           └─ Time Bold Yellow Pill (#clock.time)
+  │     │            │           │          │           └─ Time Bold Yellow (#clock.time)
   │     │            │           │          └─ Date & Calendar (#clock.date)
   │     │            │           └─ Brightness Control (backlight)
   │     │            └─ Focused Window Title (hyprland/window)
@@ -51,7 +51,8 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
   - Grouped & color-coded by package manager source (`[pacman]`, `[yay]`, `[paru]`, `[flatpak]`, `[snap]`).
   - Search filter input with instant live query.
   - Dedicated quick power actions (Reboot, Shutdown, Logout).
-- **📊 Value-Reactive Hardware Monitoring:**
+- **📊 Value-Reactive Hardware Monitoring & Clean Text Layout:**
+  - Explicit and legible format for `CPU {usage}%` and `RAM {}%` with optimal module spacing.
   - Dynamic color thresholds for CPU, RAM, and Battery (Normal ➔ Warning ➔ Critical).
   - Smooth blinking CSS animation when battery hits critical level without charging.
   - Responsive subtle hover highlight on interactive modules.
@@ -64,9 +65,9 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
   - Green (`#8cd867`) active and Red (`#f7768e`) inactive indicators with subtle green background glow when ON.
 - **✨ Neon Glow & Ambient Bloom (`style.css`):**
   - Outer bar glow via `window#waybar` — `border-top: 1px solid rgba(91,157,255,0.28)` + layered `box-shadow: 0 -2px 14px rgba(91,157,255,0.32), 0 -4px 32px rgba(91,157,255,0.14)` for upward bloom.
-  - Per-module `text-shadow: 0 0 8px currentColor` in matching hue (aqua, terracotta, rose, green, sky, gold, violet, sapphire) + `box-shadow` bloom on `#custom-logo`, `#workspaces button.active`, `#clock.time`, and tooltip.
+  - Per-module `text-shadow: 0 0 8px currentColor` in matching hue (aqua, terracotta, rose, green, sky, gold, violet, sapphire) + `box-shadow` bloom on `#custom-logo`, `#workspaces button.active`, and tooltip.
   - Symmetrical center cluster: **Backlight** (soft gold) and **PulseAudio** (violet) frame the split clock.
-  - Split center clock: **Date** (`#clock.date`) in muted lavender `#a9b1d6` (flat with calendar tooltip), **Time** (`#clock.time`) in vivid bold yellow pill (`font-weight: 800`, `rgba(255,235,59,0.12)` bg / `#ffeb3b` / `rgba(255,235,59,0.28)` border / `0 0 10px rgba(255,235,59,0.25)` glow).
+  - Split center clock: **Date** (`#clock.date`) in muted lavender `#a9b1d6` (flat with calendar tooltip), **Time** (`#clock.time`) in vivid bold yellow (`#ffeb3b`, `font-weight: 800`, borderless transparent styling with glowing `text-shadow: 0 0 8px rgba(255,235,59,0.5)`).
 - **🎛 Integrated Controls & Quick Menus:**
   - Left-click on network opens `nmtui` in Kitty.
   - Left-click on bluetooth opens `bluetoothctl` in Kitty.
@@ -87,10 +88,10 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
 | | `clock#date` | `Sat 23 Aug` (`{:%a %d %b}`) | — | Shift calendar month up/down | Calendar (`<tt><big>{calendar}</big></tt>`, today `#f7768e`) |
 | | `clock#time` | `08:15 PM` (`{:%I:%M %p}`, 1s) | — | Shift calendar month up/down | — |
 | | `pulseaudio` | `󰕾` `{volume}%` / `󰖁` muted | Toggle mute (`pactl`) | Volume ±5% | — (`tooltip: false`) |
-| **Right** | `custom/weather` | `󰖃` `{text}` (e.g. `29°C`) | Rich `notify-send` weather popup | — | Detailed weather report (`tooltip: true`) |
-| | `memory` | `󰻟`/`` `{percent}%` | — | — | `used {used} GiB / {total} GiB` |
-| | `cpu` | `󰲋`/`` `{usage}%` | — | — | `load: {load}` / `freq (max): {max_frequency} GHz` |
-| | `battery` | `󰁹` `{capacity}% {icon}` (`󰁺`–`󰁹`, `󰂄` charging, `󰚥` plugged) | — | — | Time remaining (`format-alt: {time} {icon}`) |
+| **Right** | `custom/weather` | `{text}` (e.g. `29°C Kolkata` / `🌧 29°C Kolkata`) | Rich `notify-send` weather popup | — | Detailed weather report (`tooltip: true`) |
+| | `memory` | `RAM {percent}%` | — | — | `used {used} GiB / {total} GiB` |
+| | `cpu` | `CPU {usage}%` | — | — | `load: {load}` / `freq (max): {max_frequency} GHz` |
+| | `battery` | `{capacity}% {icon}` (`󰁺`–`󰁹`) | — | — | Time remaining (`format-alt: {time} {icon}`) |
 | | `network` | `󰖩`/`` `{signal}%` / `{ifname}` / `off` | Launch `kitty nmtui` | — | SSID/IP/CIDR + `↓{bandwidthDownBytes} ↑{bandwidthUpBytes}` |
 | | `bluetooth` | `󰂯` on / `󰂲` off/disabled / `󰂱` connected | Launch `kitty bluetoothctl` | — | Controller + `num_connections` / `{device_enumerate}` |
 | | `custom/numlock` | `●` **NumLock** | — | — | `ON` / `OFF` (polled `0.2s` via `scripts/numlock.py`) |
@@ -107,7 +108,7 @@ The bar uses a custom **Deep Night Blue** theme with refined Tokyo-Night inspire
 | ⬜ | **Soft Lavender** | `#c0caf5` | Default foreground text and tooltip text |
 | 🟦 | **Accent Blue** | `#5b9dff` | Arch logo (`#custom-logo`), Active workspace button, Outer bar glow (`window#waybar`) |
 | 🪻 | **Muted Lavender** | `#a9b1d6` | Date text (`#clock.date`) in center cluster |
-| 💛 | **Vivid Yellow** | `#ffeb3b` | Time pill (`#clock.time`) — bold 800, `rgba(255,235,59,0.12)` bg, `rgba(255,235,59,0.28)` border, `0 0 10px rgba(255,235,59,0.25)` glow |
+| 💛 | **Vivid Yellow** | `#ffeb3b` | Time text (`#clock.time`) — bold 800, transparent bg, text-shadow `0 0 8px rgba(255,235,59,0.5)` glow |
 | 🩵 | **Soft Aqua / Seafoam** | `#5eead4` | Weather module normal/day state (`#custom-weather`) |
 | 🌧️ | **Rain Blue** | `#70c0e8` | Weather rainy state (`#custom-weather.rainy`) |
 | 🌙 | **Night Blue** | `#89b4fa` | Weather night state (`#custom-weather.night`) |
@@ -225,8 +226,8 @@ window#waybar {
 Edit `style.css`:
 - **Bar background & outer glow**: `window#waybar { background-color: #050a1f; border-top: 1px solid rgba(91,157,255,0.28); box-shadow: 0 -2px 14px rgba(91,157,255,0.32), 0 -4px 32px rgba(91,157,255,0.14); }` — lower alphas for subtler bloom, raise for stronger neon.
 - **Center cluster & clock highlight**:
-  - `#clock.date`: `color: #a9b1d6; font-weight: 600;` (flat muted lavender date).
-  - `#clock.time`: `background-color: rgba(255,235,59,0.12); color: #ffeb3b; font-weight: 800; border: 1px solid rgba(255,235,59,0.28); box-shadow: ...;` (vivid bold yellow glowing pill).
+  - `#clock.date`: `color: #a9b1d6; font-weight: 600; padding: 0 6px;` (flat muted lavender date).
+  - `#clock.time`: `color: #ffeb3b; font-weight: 800; padding: 0 6px; text-shadow: 0 0 8px rgba(255,235,59,0.5);` (vivid bold yellow neon text, clean borderless styling with transparent background).
   - `#backlight`: `color: #ffd166; text-shadow: 0 0 8px rgba(255,209,102,0.6);` (soft gold glow).
   - `#pulseaudio`: `color: #a78bfa; text-shadow: 0 0 8px rgba(167,139,250,0.6);` (violet glow).
 - **Module glow**: Each module has `text-shadow: 0 0 8px <matching-color>` (e.g. `#cpu: rgba(234,153,120,0.6)`) — adjust blur `8px → 12px` for stronger neon or remove for flat look. Active workspace (`#workspaces button.active`) and logo (`#custom-logo`) use layered `box-shadow` bloom.
