@@ -5,8 +5,8 @@
     "reload_style_on_change": true,
 
     "modules-left": ["custom/logo", "hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock#date", "clock#time"],
-    "modules-right": ["custom/weather", "cpu", "memory", "battery", "network", "backlight", "pulseaudio", "bluetooth", "custom/numlock"],
+    "modules-center": ["backlight", "clock#date", "clock#time", "pulseaudio"],
+    "modules-right": ["custom/weather", "memory", "cpu", "battery", "network", "bluetooth", "custom/numlock"],
 
     "custom/logo": {
         "format": "󰣇",
