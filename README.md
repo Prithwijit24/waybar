@@ -2,7 +2,7 @@
 
 # ⚡ Minimalist Waybar Rice
 
-A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** with a Deep Dark Blue palette, neon glow & ambient bloom, soft-pink center clock, value-reactive color indicators, custom GTK3 App Drawer, and instant hardware polling.
+A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** with a Deep Dark Blue palette, neon glow & ambient bloom, split center cluster (backlight · date · yellow time pill · volume), value-reactive color indicators, custom GTK3 App Drawer, and instant hardware polling.
 
 [![Waybar](https://img.shields.io/badge/Waybar-0.9+-blue?style=flat-square&logo=wayland&logoColor=white)](https://github.com/Alexays/Waybar)
 [![Hyprland](https://img.shields.io/badge/WM-Hyprland-00c8ff?style=flat-square&logo=arch-linux&logoColor=white)](https://hyprland.org/)
@@ -15,21 +15,25 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
 
 ## 📸 Layout Overview
 
+> Synced with `config.jsonc:6-9` — `modules-left` / `modules-center` / `modules-right`.
+
 ```text
-┌── LEFT ──────────────────────────────┬────── CENTER ──────┬────────────────────────────────── RIGHT ──────────────────────────────────┐
-│  󰣇  │ 1 2 3 │  code README.md        │   Sat 23 Aug 08:15 │  󰖃 29°C  󰲋 12%  󰻟 40%  󰚥 88%  󰖩 72%  󰔆 60%  󰕾 55%  󰂱 90%  ●   │
-└──┴───────────────────────────────────┴────────────────────┴───────────────────────────────────────────────────────────────────────────┘
-   │     │        │                         │                  │        │      │      │      │      │      │      │      │
-   │     │        └─ Focused Window         └─ Clock/Calendar  │        │      │      │      │      │      │      │      └─ NumLock (LED)
-   │     └─ Workspaces                                         │        │      │      │      │      │      │      └─ Bluetooth & Battery
-   └─ App Drawer Launcher                                      │        │      │      │      │      │      └─ Volume (PulseAudio)
-                                                               │        │      │      │      │      └─ Brightness (Backlight)
-                                                               │        │      │      │      └─ Wi-Fi / Ethernet (Network)
-                                                               │        │      │      └─ Battery Capacity & State
-                                                               │        │      └─ RAM Usage
-                                                               │        └─ CPU Usage
-                                                               └─ Weather & Notification
+┌─ LEFT ─────────────────────────────┬────────────────── CENTER ───────────────────┬────────────────────── RIGHT ────────────────────────┐
+│  󰣇  │ 1 2 3 │ code README.md      │  󰃠 60% │ Sat 23 Aug │ 08:15 PM │ 󰕾 55%  │  󰖃 29°C │ 󰻟 40% │ 󰲋 12% │ 󰂀 88% │ 󰖩 72% │ 󰂱  │ ●  │
+└──┴─────┴──────┴───────────────────┴───────┴────────────┴──────────┴───────┴──────────┴──────┴──────┴──────┴──────┴────┴────┘
+   │     │        │                  │       │            │          │         │        │      │      │      │     │
+   │     │        └─ Focused Window  │       │            │          │         │        │      │      │      │     └─ NumLock LED (custom/numlock)
+   │     └─ Workspaces (1 2 3)       │       │            └─ Time    │         │        │      │      │      └─ Bluetooth (bluetooth)
+   └─ App Drawer (custom/logo)       │       │              (#clock.time · yellow pill) └─ Volume     │        │      └─ Network Wi-Fi/Ethernet (network)
+                                     │       └─ Date (#clock.date)  12h  pulseaudio     │        └─ Battery + Icon (battery)
+                                     └─ Backlight (center)               (center)       └─ Weather  └─ CPU Usage (cpu)
+                                                                             (custom/weather) └─ Memory/RAM (memory)
 ```
+
+**Zone mapping (as configured):**
+- **Left:** `custom/logo` → `hyprland/workspaces` → `hyprland/window`
+- **Center:** `backlight` → `clock#date` → `clock#time` → `pulseaudio`
+- **Right:** `custom/weather` → `memory` → `cpu` → `battery` → `network` → `bluetooth` → `custom/numlock`
 
 ---
 
@@ -52,8 +56,8 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
   - Green (`#8cd867`) active and Red (`#f7768e`) inactive indicators with subtle green background glow when ON.
 - **✨ Neon Glow & Ambient Bloom (`style.css`):**
   - Outer bar glow via `window#waybar` — `border-top: 1px solid rgba(91,157,255,0.28)` + layered `box-shadow: 0 -2px 14px rgba(91,157,255,0.32), 0 -4px 32px rgba(91,157,255,0.14)` for upward bloom.
-  - Per-module `text-shadow: 0 0 8px currentColor` in matching hue (aqua, terracotta, rose, green, sky, gold, violet, sapphire) + `box-shadow` bloom on `#custom-logo`, `#workspaces button.active`, `#clock`, and tooltip.
-  - Center clock uses muted **Soft Pink** (`rgba(232,139,172,0.14)` / `#e8b4c8` / `0 0 10px rgba(232,139,172,0.20)`) for pleasant, non-harsh highlight.
+  - Per-module `text-shadow: 0 0 8px currentColor` in matching hue (aqua, terracotta, rose, green, sky, gold, violet, sapphire) + `box-shadow` bloom on `#custom-logo`, `#workspaces button.active`, `#clock.time`, and tooltip.
+  - Center clock split: **Date** (`#clock.date`) muted lavender `#a9b1d6` flat, **Time** (`#clock.time`) vivid yellow pill — `rgba(255,235,59,0.12)` bg / `#ffeb3b` / `rgba(255,235,59,0.28)` border / `0 0 10px rgba(255,235,59,0.25)` glow.
 - **🎛 Integrated Controls & Quick Menus:**
   - Left-click on network opens `nmtui` in Kitty.
   - Left-click on bluetooth opens `bluetoothctl` in Kitty.
@@ -66,19 +70,20 @@ A sleek, ultra-compact (25px) Waybar configuration designed for **Hyprland** wit
 
 | Zone | Module | Icon & Label | Click Action | Scroll Action | Hover Tooltip |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Left** | `custom/logo` | `󰣇` **App Drawer** | Launch GTK3 App Drawer | — | `"App drawer"` |
-| | `hyprland/workspaces` | `1` `2` `3` **Workspaces** | Switch workspace | — | — |
-| | `hyprland/window` | `firefox` **Window Title** | — | — | Full window title |
-| **Center** | `clock` | `󰃭` `Sat 23 Aug 08:15 PM` | — | Shift month up/down | Calendar view with today highlighted |
-| **Right** | `custom/weather` | `󰖃` **29°C Kolkata** | Rich weather notification | — | Detailed weather report |
-| | `cpu` | `󰲋` `{usage}%` | — | — | CPU load average & Max frequency |
-| | `memory` | `󰻟` `{percent}%` | — | — | Memory used / total in GiB |
-| | `battery` | `󰁹` `{capacity}%` | — | — | Time remaining (alternate mode) |
-| | `network` | `󰖩` `{signal}%` | Launch `kitty nmtui` | — | SSID, IP/CIDR, Up/Down bandwidth |
-| | `backlight` | `󰃠` `{percent}%` | — | Brightness up/down | — |
-| | `pulseaudio` | `󰕾` `{volume}%` | Toggle mute | Volume ±5% | — |
-| | `bluetooth` | `󰂱` / `󰂲` **Bluetooth** | Launch `kitty bluetoothctl` | — | Connected device details & battery |
-| | `custom/numlock` | `●` **NumLock** | — | — | NumLock status (ON / OFF) |
+| **Left** | `custom/logo` | `󰣇` **App Drawer** | Launch GTK3 App Drawer (`scripts/launch_drawer.sh`) | — | `App drawer` |
+| | `hyprland/workspaces` | `1` `2` `3` **Workspaces** | Switch workspace (`activate`) | — | — |
+| | `hyprland/window` | **Window Title** (max 45 chars) | — | — | Full window title |
+| **Center** | `backlight` | `󰃠` `{percent}%` (icons `󰃚`–`󰃠`) | — | — | — (`tooltip: false`) |
+| | `clock#date` | `Sat 23 Aug` (`{:%a %d %b}`) | — | Shift calendar month up/down | Calendar (`<tt><big>{calendar}</big></tt>`, today `#f7768e`) |
+| | `clock#time` | `08:15 PM` (`{:%I:%M %p}`, 1s) | — | Shift calendar month up/down | — |
+| | `pulseaudio` | `󰕾` `{volume}%` / `󰖁` muted | Toggle mute (`pactl`) | Volume ±5% | — (`tooltip: false`) |
+| **Right** | `custom/weather` | `󰖃` `{text}` (e.g. `29°C`) | Rich `notify-send` weather popup | — | Detailed weather report (`tooltip: true`) |
+| | `memory` | `󰻟`/`` `{percent}%` | — | — | `used {used} GiB / {total} GiB` |
+| | `cpu` | `󰲋` `{usage}%` | — | — | `load: {load}` / `freq (max): {max_frequency} GHz` |
+| | `battery` | `󰁹` `{capacity}% {icon}` (`󰁺`–`󰁹`, `󰂄` charging, `󰚥` plugged) | — | — | Time remaining (`format-alt: {time} {icon}`) |
+| | `network` | `󰖩`/`` `{signal}%` / `{ifname}` / `off` | Launch `kitty nmtui` | — | SSID/IP/CIDR + `↓{bandwidthDownBytes} ↑{bandwidthUpBytes}` |
+| | `bluetooth` | `󰂯` on / `󰂲` off/disabled / `󰂱` connected | Launch `kitty bluetoothctl` | — | Controller + `num_connections` / `{device_enumerate}` |
+| | `custom/numlock` | `●` **NumLock** | — | — | `ON` / `OFF` (polled `0.2s` via `scripts/numlock.py`) |
 
 ---
 
@@ -91,7 +96,7 @@ The bar uses a custom **Deep Night Blue** theme with refined Tokyo-Night inspire
 | ⬛ | **Extreme Dark Blue** | `#050a1f` | Main Waybar background (`window#waybar`) |
 | ⬜ | **Soft Lavender** | `#c0caf5` | Default foreground text and tooltip text |
 | 🟦 | **Accent Blue** | `#5b9dff` | Arch logo (`#custom-logo`), Active workspace button, Outer bar glow (`window#waybar`) |
-| 🩷 | **Soft Pink** | `#e88bac` / `#e8b4c8` | Clock pill (`#clock`) — `rgba(232,139,172,0.14)` bg, `rgba(232,139,172,0.28)` border, `0 0 10px rgba(232,139,172,0.20)` glow |
+| 🩷 | **Soft Yellow** | `#ffeb3b` | Time pill (`#clock.time`) — `rgba(255,235,59,0.12)` bg, `rgba(255,235,59,0.28)` border, `0 0 10px rgba(255,235,59,0.25)` glow; Date (`#clock.date`) uses `#a9b1d6` flat |
 | 🩵 | **Soft Aqua / Seafoam** | `#5eead4` | Weather module normal/day state (`#custom-weather`) |
 | 🌧️ | **Rain Blue** | `#70c0e8` | Weather rainy state (`#custom-weather.rainy`) |
 | 🌙 | **Night Blue** | `#89b4fa` | Weather night state (`#custom-weather.night`) |
@@ -199,7 +204,7 @@ In `config.jsonc` (lines 2–4):
 ### 4. Customize Colors & Appearance
 Edit `style.css`:
 - **Bar background & outer glow**: `window#waybar { background-color: #050a1f; border-top: 1px solid rgba(91,157,255,0.28); box-shadow: 0 -2px 14px rgba(91,157,255,0.32), 0 -4px 32px rgba(91,157,255,0.14); }` — lower alphas for subtler bloom, raise for stronger neon.
-- **Clock highlight (Soft Pink)**: `#clock { background-color: rgba(232,139,172,0.14); color: #e8b4c8; border: 1px solid rgba(232,139,172,0.28); box-shadow: 0 0 10px rgba(232,139,172,0.20); text-shadow: 0 0 8px rgba(232,139,172,0.42); }` — was solid `#5b9dff`; increase `0.14 → 0.20` for brighter pill.
+- **Clock highlight (split)**: `#clock.date { color: #a9b1d6; }` (flat) · `#clock.time { background-color: rgba(255,235,59,0.12); color: #ffeb3b; border: 1px solid rgba(255,235,59,0.28); box-shadow: 0 0 10px rgba(255,235,59,0.25); text-shadow: 0 0 8px rgba(255,235,59,0.5); }` — increase `0.12 → 0.20` for brighter time pill.
 - **Module glow**: Each right-module has `text-shadow: 0 0 8px <matching-color>` (e.g. `#cpu: rgba(234,153,120,0.6)`) — adjust blur `8px → 12px` for stronger neon or remove for flat look. Active workspace (`#workspaces button.active`) and logo (`#custom-logo`) use layered `box-shadow` bloom.
 - **Hover effects**: Configured under `#custom-weather:hover, #cpu:hover, ... { background-color: rgba(255, 255, 255, 0.06); box-shadow: 0 0 10px rgba(255,255,255,0.08); }`.
 - **Module colors & state classes**: Individual module and sub-state selectors (`#custom-weather.rainy`, `#custom-weather.night`, `#battery.warning`, `#custom-numlock.on`, etc.).
