@@ -59,7 +59,7 @@
     },
 
     "cpu": {
-        "format": "\uf2db {usage}%",
+        "format": "CPU {usage}%",
         "interval": 2,
         "states": {
             "normal": 40,
@@ -70,7 +70,7 @@
     },
 
     "memory": {
-        "format": "\uefc5 {}%",
+        "format": "RAM {}%",
         "interval": 2,
         "states": {
             "normal": 40,
@@ -88,8 +88,8 @@
             "critical": 20
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% {icon} 󰂄",
-        "format-plugged": "{capacity}% {icon} 󰚥",
+        "format-charging": "{capacity}% {icon}",
+        "format-plugged": "{capacity}% {icon}",
         "format-alt": "{time} {icon}",
         "format-icons": [
             "󰁺",
