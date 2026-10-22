@@ -126,7 +126,10 @@ tooltip label {
 #network,
 #backlight,
 #pulseaudio,
-#bluetooth {
+#bluetooth,
+#disk,
+#custom-battery-health,
+#custom-cpu-temp {
     padding: 0 6px;
     border-radius: 9px;
     font-weight: 700;
@@ -140,7 +143,8 @@ tooltip label {
 #network:hover,
 #backlight:hover,
 #pulseaudio:hover,
-#bluetooth:hover {
+#bluetooth:hover,
+#disk:hover {
     background-color: rgba(255, 255, 255, 0.06);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
 }
@@ -231,6 +235,48 @@ tooltip label {
     animation-direction: alternate;
 }
 
+/* 4b. Battery Health (left cluster): share of the original design capacity */
+#custom-battery-health.good {
+    color: #8cd867;
+    text-shadow: 0 0 8px rgba(140, 216, 103, 0.6);
+}
+
+#custom-battery-health.warning {
+    color: #ffd166;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+}
+
+#custom-battery-health.critical {
+    color: #f7768e;
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.85);
+}
+
+#custom-battery-health.error {
+    color: #f7768e;
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.85);
+}
+
+/* 4c. CPU Temperature (left cluster): average of package + core sensors */
+#custom-cpu-temp.normal {
+    color: #ea9978;
+    text-shadow: 0 0 8px rgba(234, 153, 120, 0.6);
+}
+
+#custom-cpu-temp.warning {
+    color: #ff8c5a;
+    text-shadow: 0 0 10px rgba(255, 140, 90, 0.75);
+}
+
+#custom-cpu-temp.critical {
+    color: #f7768e;
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.85);
+}
+
+#custom-cpu-temp.error {
+    color: #f7768e;
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.85);
+}
+
 /* 5. Network: Ice Sky Blue */
 #network {
     color: #60cdff;
@@ -276,7 +322,43 @@ tooltip label {
     text-shadow: none;
 }
 
-/* 9. NumLock: Green (Active) / Red (Inactive) */
+/* 9. Disk: Mint Teal (left cluster, SSD free space) */
+#disk {
+    color: #73daca;
+    text-shadow: 0 0 8px rgba(115, 218, 202, 0.6);
+}
+
+#disk.warning {
+    color: #ffd166;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
+}
+
+#disk.critical {
+    color: #ff8c5a;
+    text-shadow: 0 0 10px rgba(255, 140, 90, 0.75);
+}
+
+#disk.full {
+    color: #f7768e;
+    text-shadow: 0 0 10px rgba(247, 118, 142, 0.8);
+}
+
+/* --- Left vitals cluster (battery health + cpu temp + disk) share a chip shell --- */
+#custom-battery-health,
+#custom-cpu-temp,
+#disk {
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+#custom-battery-health:hover,
+#custom-cpu-temp:hover,
+#disk:hover {
+    background-color: rgba(255, 255, 255, 0.07);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 0 10px rgba(255, 255, 255, 0.08);
+}
+
+/* 10. NumLock: Green (Active) / Red (Inactive) */
 #custom-numlock {
     padding: 0 6px;
     font-size: 15px;
