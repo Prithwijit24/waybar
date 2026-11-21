@@ -78,6 +78,12 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
     crimson `󱊡` (<50%), so a worn pack can never be mistaken for a healthy one.
   - Disk colour escalates with utilisation: teal ➔ gold (`warning`) ➔ apricot (`critical`) ➔ crimson (`full`).
   - Click the disk chip to open `df -h /` in Kitty.
+- **🪟 Workspace App Icons (`hyprland/workspaces`):**
+  - Each workspace button shows its ID **plus the real app icon(s)** of the windows open there
+    (e.g. `1 󰄮` for a terminal, `2 🌐` for a browser), powered by Waybar's native
+    `workspace-taskbar` reading icons from the system icon theme via each window's class.
+  - `{windows}` is kept in `format` because Waybar 0.15 only parses `workspace-taskbar` when that
+    placeholder is present; `update-active-window` highlights the focused window's icon.
 - **🌤 Live Weather & Desktop Notification (`scripts/weather.py`):**
   - Weather fetched and cached from WeatherAPI.
   - Condition-aware styling (Day/Night, Rainy, and Error states).
@@ -107,7 +113,7 @@ A sleek, ultra-compact Waybar configuration (26px min-height) designed for **Hyp
 | | `custom/battery-health` | `󱊡` `{health}%` **Battery Health** | — | — | `Health: 24.2% of design capacity` + actual/design charge + cycles |
 | | `custom/cpu-temp` | `󱃂` `{avg}°C` **CPU Temp** | — | — | Average of the per-core sensors + the package peak |
 | | `disk` | `󰊊` `{percentage_free}% {specific_free}G` **SSD Free** | Open `df -h /` in Kitty | — | Free/total, free % and used % |
-| | `hyprland/workspaces` | `1` `2` `3` **Workspaces** | Switch workspace (`activate`) | — | — |
+| | `hyprland/workspaces` | `1` `2` `3` **Workspaces** + per-window app icons from the icon theme (via `workspace-taskbar`) | Switch workspace (`activate`) | — | — |
 | | `hyprland/window` | **Window Title** (max 45 chars) | — | — | Full window title |
 | **Center** | `backlight` | `󰃠` `{percent}%` (icons `󰃚`–`󰃠`) | — | — | — (`tooltip: false`) |
 | | `clock#date` | `Sat 23 Aug` (`{:%a %d %b}`) | — | Shift calendar month up/down | Calendar (`<tt><big>{calendar}</big></tt>`, today `#f7768e`) |

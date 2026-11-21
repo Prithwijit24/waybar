@@ -91,6 +91,18 @@ tooltip label {
     text-shadow: 0 0 8px rgba(255, 84, 112, 0.9);
 }
 
+/* Per-window app icons rendered by workspace-taskbar */
+#workspaces .taskbar-window {
+    margin: 0 3px 0 5px;
+    opacity: 0.85;
+}
+
+#workspaces .taskbar-window.active {
+    opacity: 1;
+    background-color: rgba(91, 157, 255, 0.2);
+    border-radius: 5px;
+}
+
 #window {
     color: #9aa5ce;
     font-family: "Noto Sans", sans-serif;

@@ -45,9 +45,14 @@
     },
 
     "hyprland/workspaces": {
-        "format": "{id}",
+        "format": "{id} {windows}",
         "on-click": "activate",
-        "sort-by-number": true
+        "sort-by-number": true,
+        "workspace-taskbar": {
+            "enable": true,
+            "icon-size": 16,
+            "update-active-window": true
+        }
     },
 
     "hyprland/window": {
